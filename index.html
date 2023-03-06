@@ -2,8 +2,15 @@
 <html>
     <head>
         <title>fortnite</title>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     </head>
     <body>
-        haha
+        <div id="navbar"></div>
+        page content
+        <script>
+            $(document).ready(function(){
+                $("#navbar").load("navbar/navbar.html");
+            });
+        </script>
     </body>
 </html>
