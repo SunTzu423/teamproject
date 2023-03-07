@@ -4,15 +4,15 @@ console.log("navbar loaded");
 let selectBarWidth = "--select-bar-factor";
 
 //functions
-function redirectWindow(elemId) { //takes ID of the nav-item clicked and redirects to the correct page
+function RedirectWindow(elemId) { //takes ID of the nav-item clicked and redirects to the correct page
     switch(elemId) {
-        case "nav-start":
+        case "nav-1":
             window.location.href = "index.html";
             break;
         case "nav-2":
             window.location.href = "page2.html";
             break;
-        case "nav-end":
+        case "nav-3":
             window.location.href = "page3.html";
             break;
         default:
@@ -49,4 +49,4 @@ window.onresize = function() {
 };
 
 //navbar buttons redirect window
-$(".nav-item").click(function() { redirectWindow(this.id) });
+$(".nav-item").click(function() { RedirectWindow(this.id) });

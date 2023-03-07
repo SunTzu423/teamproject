@@ -33,13 +33,12 @@ body {
     bottom: 75%;
 }
 
-
-#nav-start { /* rounded edges for navbar*/
+.nav-item:first-of-type {
     border-bottom-left-radius: 6px;
     border-top-left-radius: 6px;
 }
 
-#nav-end {
+.nav-item:last-of-type {
     border-bottom-right-radius: 6px;
     border-top-right-radius: 6px;
 }

@@ -5,9 +5,14 @@
         <link rel="stylesheet" type="text/css" href="navbar/navbar.css" />
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     </head>
+    <!-- 
+    to add page connection to navbar: 
+    1. copy div with class .nav-item and change name and id
+    2. in navbar.js add a case in the switch statement in RedirectWindow() for the ID of the nav-item div, and add a window.location.href = "[name of html page]"
+    -->
     <body>
         <div class="nav-bar">
-            <div class="nav-item" id="nav-start">
+            <div class="nav-item" id="nav-1">
                 <span class="nav-text">Page 1</span>
                 <div class="select-bar"></div>
             </div>
@@ -15,7 +20,7 @@
                  <span class="nav-text">Page 2</span>
                  <div class="select-bar"></div>
             </div>
-            <div class="nav-item" id="nav-end">
+            <div class="nav-item" id="nav-3">
                  <span class="nav-text">Page 3</span>
                  <div class="select-bar"></div>
             </div>
