@@ -24,7 +24,7 @@ function RedirectWindow(elemId) { //takes ID of the nav-item clicked and redirec
 //initial values based on width of the window
 document.documentElement.style.setProperty(selectBarWidth, window.innerWidth/35); //initial select bar width
 $(".nav-text").css("font-size", "" + window.innerHeight/38 + "px"); //initial text size
-$(".select-bar").css("height", "" + window.innerHeight/400.5 + "px"); //initial select bar size
+$(".select-bar").css("height", "" + window.innerHeight/400.5 + "px"); //initial select bar height
 
 //hover text color change
 $(".nav-item").hover(function() {
@@ -36,11 +36,12 @@ $(".nav-item").hover(function() {
 //text and navbar scales with window
 window.onresize = function() {
     //text resize with window
-    $(".nav-text").css({
-        "font-size": "" + window.innerHeight/38 + "px", 
-        "top": "25%"
-    });
-    
+    if(window.innerHeight/38 > 15) { //sets minimum text size
+        $(".nav-text").css({
+            "font-size": "" + window.innerHeight/38 + "px", 
+            "top": "25%"
+        });
+    } 
     //select bar height scales with window
     $(".select-bar").css("height", "" + window.innerHeight/400.5 + "px");
 
