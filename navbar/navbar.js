@@ -1,4 +1,4 @@
-console.log("navbar loaded");
+console.log("navbar.js loaded");
 
 //vars
 let selectBarWidth = "--select-bar-factor";
@@ -21,7 +21,7 @@ function RedirectWindow(elemId) { //takes ID of the nav-item clicked and redirec
     }
 }
 
-//initial values
+//initial values based on width of the window
 document.documentElement.style.setProperty(selectBarWidth, window.innerWidth/35); //initial select bar width
 $(".nav-text").css("font-size", "" + window.innerHeight/38 + "px"); //initial text size
 $(".select-bar").css("height", "" + window.innerHeight/400.5 + "px"); //initial select bar size

@@ -33,12 +33,12 @@ body {
     bottom: 75%;
 }
 
-.nav-item:first-of-type {
+.nav-item:first-of-type { /*rounded corners for first nav-item */
     border-bottom-left-radius: 6px;
     border-top-left-radius: 6px;
 }
 
-.nav-item:last-of-type {
+.nav-item:last-of-type { /*rounded corners for last nav-item */
     border-bottom-right-radius: 6px;
     border-top-right-radius: 6px;
 }
