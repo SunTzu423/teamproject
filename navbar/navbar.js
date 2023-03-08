@@ -15,6 +15,9 @@ function RedirectWindow(elemId) { //takes ID of the nav-item clicked and redirec
         case "nav-3":
             window.location.href = "page3.html";
             break;
+        case "nav-4":
+            window.location.href = "page4.html";
+            break;
         default:
             console.log("redirectWindow error");
             break;
