@@ -48,8 +48,7 @@ h1 {
     font: normal 100 25px "Roboto", sans-serif;
     position: relative;
     width: 95%;
-    margin: auto;
-    margin-bottom: 30px;
+    margin: 30px auto;
     line-height: 1.8;
 }
 
