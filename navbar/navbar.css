@@ -6,7 +6,7 @@
     display: flex;
     height: 8vh;
     flex-direction: row;
-    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0 7px 10px rgba(0, 0, 0, 0.5); */
     text-align: center;
     border-radius: 6px;
 }
@@ -41,7 +41,7 @@
 }
 
 .select-bar { /*selection bar, base properties*/
-    background-color: #00804d;
+    background-color: #009459;
     position:absolute;
     width: 4px;
     top: 93%;

@@ -13,17 +13,14 @@ body {
     position: relative;
     flex-direction: row;
     height: 88vh;
-    width: 100%;
+    width: 90%;
     /* box-shadow: 0 7px 10px rgba(0, 0, 0, 0.5); */
-    background-color: #cde3c9;
-    /* background-color: #a4a6a4; */
+    /* background-color: #cde3c9; */
+    background-color: #ffffff;
     transform: scaleX(1);
     border-radius: 7px;
-    margin-top: 20px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin: 20px auto;
 }
-
 
 /*.img-background { /*background for images
     position: relative;
