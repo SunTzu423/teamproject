@@ -8,18 +8,19 @@
     flex-direction: row;
     box-shadow: 0 7px 10px rgba(0, 0, 0, 0.5);
     text-align: center;
+    border-radius: 6px;
 }
 
 .nav-item{ /*individual items*/
     width: 100%;
-    background-color: #ecf0f1;
+    background-color: #5BD780;
     margin: 0px;
     transform-origin:center center;
     position: relative;
 }
 
 .nav-text { /* text in each individual item*/
-    color: #848484;
+    color: #00A362;
     font: normal 100 0px "Roboto", sans-serif;
     text-align: center;
     bottom: 0;
@@ -40,7 +41,7 @@
 }
 
 .select-bar { /*selection bar, base properties*/
-    background-color: #e74c3c;
+    background-color: #00804d;
     position:absolute;
     width: 4px;
     top: 93%;

@@ -28,9 +28,9 @@ $(".select-bar").css("height", "" + window.innerHeight/400.5 + "px"); //initial 
 
 //hover text color change
 $(".nav-item").hover(function() {
-    $(this).children(".nav-text").css("color", "#e74c3c");//red text when hovered
+    $(this).children(".nav-text").css("color", "#00804d");//red text when hovered
 }, function() {
-    $(this).children(".nav-text").css("color", "#848484"); //grey text when not hovered
+    $(this).children(".nav-text").css("color", "#00A362"); //grey text when not hovered
 });
 
 //text and navbar scales with window
