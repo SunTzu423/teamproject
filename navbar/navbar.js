@@ -2,25 +2,23 @@ console.log("navbar.js loaded");
 
 //vars
 let selectBarWidth = "--select-bar-factor";
+let currPageId = "nav-1";
 
-//functions
-function RedirectWindow(elemId) { //takes ID of the nav-item clicked and redirects to the correct page
-    switch(elemId) {
-        case "nav-1":
-            window.location.href = "index.html";
-            break;
-        case "nav-2":
-            window.location.href = "page2.html";
-            break;
-        case "nav-3":
-            window.location.href = "page3.html";
-            break;
-        case "nav-4":
-            window.location.href = "page4.html";
-            break;
-        default:
-            console.log("redirectWindow error");
-            break;
+let idPagePair = 
+{
+    "nav-1": "index.html",
+    "nav-2": "page2.html",
+    "nav-3": "page3.html",
+    "nav-4": "page4.html"
+};
+
+function RedirectWindow(elemId) {
+    window.location.href = idPagePair[elemId];
+}
+
+for(let id in idPagePair) { //getting the current page id
+    if(window.location.href == idPagePair[id]) {
+        currPageId = id;
     }
 }
 
@@ -31,10 +29,16 @@ $(".select-bar").css("height", "" + window.innerHeight/400.5 + "px"); //initial 
 
 //hover text color change
 $(".nav-item").hover(function() {
-    $(this).children(".nav-text").css("color", "#00804d");//___ color text when hovered
+    $(this).children(".nav-text").css("color", "#00704d");//color text when hovered
 }, function() {
-    $(this).children(".nav-text").css("color", "#00A362"); //____ color text when not hovered
+    if(this.id != currPageId) // check if its already the selected button
+        $(this).children(".nav-text").css("color", "#00A362"); //color text when not hovered
 });
+
+// setting the current page button to make it look like its selected
+$("#" + currPageId).children(".nav-text").css("color", "#00704d");
+$("#" + currPageId).children(".select-bar").css({"visibility": "visible", "transform": "scaleX(var(--select-bar-factor))"});
+
 
 //text and navbar scales with window
 window.onresize = function() {
@@ -53,4 +57,7 @@ window.onresize = function() {
 };
 
 //navbar buttons redirect window
-$(".nav-item").click(function() { RedirectWindow(this.id) });
+$(".nav-item").click(function() { 
+    if(this.id != currPageId)
+        RedirectWindow(this.id) 
+});

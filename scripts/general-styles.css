@@ -1,6 +1,6 @@
 body {
     background-color: #cde3c9;
-    min-width: 500px;
+    min-width: 500px; 
     min-height: 1000px; 
 }
 
@@ -25,36 +25,6 @@ body {
     margin: 20px auto 0px auto;
 }
 
-#search-bar-background {
-    position: relative;
-    flex-direction: column;
-    height: 7vh;
-    width: 95%;
-    margin: 30px auto;
-    background-color: #f1f1f1;
-    border-radius: 7px;
-}
-
-#trending-background {
-    position: relative;
-    flex-direction: column;
-    height: 30vh;
-    width: 95%;
-    margin: 30px auto;
-    background-color: #f1f1f1;
-    border-radius: 7px;
-}
-
-h1 {
-    width: 95%;
-    font-family: "Arial", sans-serif;
-    font-weight: 500;
-    font-stretch: ultra-expanded;
-    font-size: 35px;
-    margin: 20px auto;
-    line-height: 2;
-}
-
 .main-text { /*main text block styles*/
     font: normal 100 25px "Roboto", sans-serif;
     position: relative;
@@ -63,7 +33,17 @@ h1 {
     line-height: 1.8;
 }
 
-#bottom-test {
+#welcome { 
+    width: 95%;
+    font-family: "Arial", sans-serif;
+    font-weight: 500;
+    font-size: 35px;
+    margin: 40px auto 10px auto;
+    line-height: 2;
+}
+
+
+#bottom-test { /*possible contacts section on bottom of screen*/
     display: block;
     flex-direction: row;
     position: absolute;
@@ -75,20 +55,72 @@ h1 {
     background-color: #2d392f;
     margin-left: 0px;
     margin-right: 0px;
+    margin-top: 30px;
 }
 
-.search input[type=text]{
+#trending-background { /*background for possible trending books section (or something similar)*/
+    position: relative;
+    flex-direction: column;
+    height: 30vh;
+    width: 95%;
+    margin: 30px auto;
+    background-color: #f1f1f1;
+    border-radius: 7px;
+}
+
+/* SEARCH BAR */
+#title-and-search { /*flex container to make the title and search bar on the same line*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0px 2% -20px 2%;
+}
+
+.search input[type=text]{ /*input tag children of search class of type text*/
     width: auto;
     height: auto;
     border-radius: 10px;
     border: none;
-    font-size: 2em;
+    font-size: 1.7em;
+    padding: 0.3em;
 }
 
-.search {
-    float:left;
-    margin: 15px;
+#search-bar-background { /*gray background for search bar*/
+    position: relative;
+    flex-direction: column;
+    height: fit-content;
+    width: fit-content;
+    margin: 30px auto;
+    background-color: #f1f1f1;
+    border-radius: 7px;
+    /* box-shadow: 0 7px 10px rgba(0, 0, 0, 0.5); */
 }
+
+.search { /*search container form*/
+    float:right;
+    margin: 15px;
+    display:flex;
+    flex-direction: row;
+}
+
+#search-button {
+    flex-direction:row;
+    width: 6em;
+    height: auto;
+    margin-left: 15px;
+    float: right;
+    border: none;
+    background-color: #345738;
+    border-radius: 5px;
+    color: #e4e4e4;
+    font-size: 25px;
+}
+
+#search-button:hover { /*when you hover over search button*/
+    background-color: #306939;
+}
+
+/* SEARCH BAR END */
 
 /*.img-background { /*background for images
     position: relative;
@@ -102,10 +134,10 @@ h1 {
 } */
 
 
-img {
+/* img {
     margin: 7px;
     max-width: 95%;
     height: auto;
     border-radius: 7px;
-}
+} */
 
