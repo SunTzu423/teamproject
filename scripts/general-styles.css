@@ -7,7 +7,7 @@ body {
 #main-flex-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-center; 
+    justify-content: center; 
 }
 
 
@@ -51,7 +51,6 @@ body {
     right: 0;
     height: 30vh;
     width: 100%;
-    display: block;
     background-color: #2d392f;
     margin-left: 0px;
     margin-right: 0px;
@@ -97,7 +96,6 @@ body {
 }
 
 .search { /*search container form*/
-    float:right;
     margin: 15px;
     display:flex;
     flex-direction: row;
@@ -120,22 +118,7 @@ body {
     background-color: #34713d;
 }
 
-#drop-down-button {
-    flex-direction:row;
-    width: 6em;
-    height: auto;
-    margin-left: 15px;
-    float: right;
-    border: none;
-    background-color: #345738;
-    border-radius: 5px;
-    color: #e4e4e4;
-    font-size: 25px;
-}
 
-#drop-down-button:hover {
-    background-color: #4e8355;
-}
 /* SEARCH BAR END */
 
 /*.img-background { /*background for images

@@ -3,7 +3,8 @@
     <head>
         <title>Temporary Title</title>
         <link rel="stylesheet" type="text/css" href="scripts/general-styles.css"/>
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="scripts/browse-styles.css"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
         <script src="https://kit.fontawesome.com/7a99b4a29c.js" crossorigin="anonymous"></script> <!-- adds easy icons like the magnifying glass in the search button -->
     </head>
     <body>
@@ -17,10 +18,11 @@
                     <div id="search-bar-background"> <!--USE CSS CLAMP()-->
                         <form class="search" action="" method="GET">
                             <input type="text" placeholder="Search Books" name="search" autocomplete="off"> 
-                            <button type="button" id="drop-down-button" name="drop-down">
-                                <i class="fa-solid fa-caret-down"></i>
-                                T
-                            </button>
+                            <select id="drop-down" name="drop-down">
+                                <option value="test">Title</option>
+                                <option value="test2">Author</option>
+                                <option value="test3">Thing</option>
+                            </select>
                             <button type="submit" id="search-button" name="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 Search 

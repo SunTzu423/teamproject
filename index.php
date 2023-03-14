@@ -3,7 +3,7 @@
     <head>
         <title>Temporary Title</title>
         <link rel="stylesheet" type="text/css" href="scripts/general-styles.css"/>
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
         <script src="https://kit.fontawesome.com/7a99b4a29c.js" crossorigin="anonymous"></script> <!-- adds easy icons like the magnifying glass in the search button -->
     </head>
     <body>

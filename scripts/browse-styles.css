@@ -1,0 +1,13 @@
+#drop-down {
+    width: fit-content;
+    height: auto;
+    margin-left: 15px;
+    float: right;
+    border: none;
+    background-color: #345738;
+    border-radius: 5px;
+    color: #e4e4e4;
+    font-size: 25px;
+    text-align: center;
+    /* padding: 5px; */
+}
