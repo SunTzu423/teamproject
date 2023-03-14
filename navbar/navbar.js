@@ -2,24 +2,17 @@ console.log("navbar.js loaded");
 
 //vars
 let selectBarWidth = "--select-bar-factor";
-let currPageId = "nav-1";
 
 let idPagePair = 
 {
-    "nav-1": "index.html",
+    "nav-1": "index.php",
     "nav-2": "page2.html",
-    "nav-3": "page3.html",
+    "nav-3": "browse.php",
     "nav-4": "page4.html"
 };
 
 function RedirectWindow(elemId) {
     window.location.href = idPagePair[elemId];
-}
-
-for(let id in idPagePair) { //getting the current page id
-    if(window.location.href == idPagePair[id]) {
-        currPageId = id;
-    }
 }
 
 //initial values based on width of the window
@@ -31,14 +24,8 @@ $(".select-bar").css("height", "" + window.innerHeight/400.5 + "px"); //initial 
 $(".nav-item").hover(function() {
     $(this).children(".nav-text").css("color", "#00704d");//color text when hovered
 }, function() {
-    if(this.id != currPageId) // check if its already the selected button
-        $(this).children(".nav-text").css("color", "#00A362"); //color text when not hovered
+    $(this).children(".nav-text").css("color", "#00A362"); //color text when not hovered
 });
-
-// setting the current page button to make it look like its selected
-$("#" + currPageId).children(".nav-text").css("color", "#00704d");
-$("#" + currPageId).children(".select-bar").css({"visibility": "visible", "transform": "scaleX(var(--select-bar-factor))"});
-
 
 //text and navbar scales with window
 window.onresize = function() {
@@ -58,6 +45,5 @@ window.onresize = function() {
 
 //navbar buttons redirect window
 $(".nav-item").click(function() { 
-    if(this.id != currPageId)
-        RedirectWindow(this.id) 
+    RedirectWindow(this.id) 
 });

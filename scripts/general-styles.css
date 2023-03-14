@@ -120,6 +120,22 @@ body {
     background-color: #34713d;
 }
 
+#drop-down-button {
+    flex-direction:row;
+    width: 6em;
+    height: auto;
+    margin-left: 15px;
+    float: right;
+    border: none;
+    background-color: #345738;
+    border-radius: 5px;
+    color: #e4e4e4;
+    font-size: 25px;
+}
+
+#drop-down-button:hover {
+    background-color: #4e8355;
+}
 /* SEARCH BAR END */
 
 /*.img-background { /*background for images

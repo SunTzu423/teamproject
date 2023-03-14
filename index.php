@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Temporary Title</title>
         <link rel="stylesheet" type="text/css" href="scripts/general-styles.css"/>
