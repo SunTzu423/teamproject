@@ -30,6 +30,9 @@
                         </form>
                     </div>
                 </div>
+                <div id="trending-background"></div>
+                <div id="trending-background"></div>
+                <div id="trending-background"></div>
             </div>                 
         </div>
         <script>
