@@ -1,3 +1,18 @@
+<?php
+
+    $search = '';
+
+    if(isset($_GET['submit'])) {
+        // echo htmlspecialchars($_GET['search']);
+        if(empty($_GET['search'])) {
+            // echo $errors[0];
+        } else {
+            $search = $_GET['search'];
+            // echo $search;
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,7 +32,7 @@
                 <div id="title-and-search">
                     <div id="search-bar-background"> <!--USE CSS CLAMP()-->
                         <form class="search" action="" method="GET">
-                            <input type="text" placeholder="Search Books" name="search" autocomplete="off"> 
+                            <input type="text" placeholder="Search Books" name="search" autocomplete="off" value="<?php echo $search; ?>"> 
                             <select id="drop-down" name="drop-down">
                                 <option value="test">Title</option>
                                 <option value="test2">Author</option>
