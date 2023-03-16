@@ -45,3 +45,27 @@
         </script>
     </body>
 </html>
+
+<!-- 
+const isbn = "0747532699";
+
+const url = `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`;
+
+fetch(url)
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.log("book not found");
+        }
+    })
+    .then(data => {
+        const bookInfo = data[`ISBN:${isbn}`];
+        const { title, authors } = bookInfo;
+        console.log(`Title: ${title}`);
+        console.log(`Author(s): ${authors.map(author => author.name).join(", ")}`);
+    })
+    .catch(error => console.log(error));
+
+
+ -->
