@@ -8,7 +8,8 @@ let idPagePair =
     "nav-1": "index.php",
     "nav-2": "page2.html",
     "nav-3": "browse.php",
-    "nav-4": "page4.html"
+    "nav-4": "add-books.php",
+    "nav-5": "page-5.html"
 };
 
 function RedirectWindow(elemId) {

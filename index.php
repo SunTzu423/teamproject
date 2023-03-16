@@ -13,7 +13,7 @@
                 <div id="title-and-search">
                     <h1 id="welcome">Welcome to Website Name</h1>
                     <div id="search-bar-background"> <!--USE CSS CLAMP()-->
-                        <form class="search" action="" method="GET">
+                        <form class="search" action="browse.php" method="GET">
                             <input type="text" placeholder="Search Books" name="search" autocomplete="off"> 
                             <button type="submit" id="search-button" name="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -35,7 +35,7 @@
                 </p>
                 <br>
                 <div id="trending-background"></div>
-            </div>            
+            </div>
         </div>
         <!-- <div id="bottom-test"></div> -->
         <script>

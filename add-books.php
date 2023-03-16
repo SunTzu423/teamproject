@@ -17,7 +17,7 @@
                 <form action="" method="GET" id="add-books-form">
                     <div class="isbn-container">
                         <label for="isbn" class="label-text">ISBN </label>                        
-                        <input type="text" class="add-books-input" name="isbn" placeholder="Enter ISBN Number">
+                        <input type="text" class="add-books-input" name="isbn" placeholder="Enter ISBN Number" autocomplete="off">
                     </div>
                 </form>
             </div>
