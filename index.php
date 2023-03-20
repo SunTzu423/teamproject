@@ -1,3 +1,28 @@
+<?php
+
+    $search = "";
+    $searchError = "";
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(empty($_POST['search'])) {
+            $searchError = "Please enter some text.";       
+        } else {
+            $search = simplifyData($_POST['search']);
+            header("Location: browse.php?search=" . urlencode($search));
+            exit();
+        }
+    }
+
+    function simplifyData($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,14 +38,18 @@
                 <div id="title-and-search">
                     <h1 id="welcome">Welcome to Website Name</h1>
                     <div id="search-bar-background"> <!--USE CSS CLAMP()-->
-                        <form class="search" action="browse.php" method="GET">
-                            <input type="text" placeholder="Search Books" name="search" autocomplete="off"> 
+                        <form class="search" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                            <div id="search-container">
+                                <input type="text" placeholder="Search Books" name="search" autocomplete="off">
+                                <span id="search-error"><?php echo $searchError;?></span>
+                            </div>
+                            <!-- <input type="text" placeholder="Search Books" name="search" autocomplete="off">  -->
                             <button type="submit" id="search-button" name="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 Search 
                             </button>
                         </form>
-                    </div>
+                    </div>                    
                 </div> 
                 <p class="main-text">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

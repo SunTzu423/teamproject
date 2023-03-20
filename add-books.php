@@ -1,3 +1,26 @@
+<?php
+    $isbn = '';
+    $isbnError = '';    
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(empty($_POST['isbn'])) {
+            $isbnError = "Please enter some text.";
+        } else if(validateIsbn($_POST['isbn'])) {
+            echo "valid ISBN"; 
+        } else {
+            echo "invalid ISBN";
+        }
+    }
+
+    function validateIsbn($isbn) {
+        // $isbnRegex = '/^(?:(?=.{17}$)978[\d-]{14}|(?=.{13}$)(?:\d[\d-]{12}|\d{9})|\d{10})$/';
+        $isbnRegex = '/^(\d{10}|\d{13})$/';
+        $isbnValue = implode(explode('-', $_POST['isbn'])); //removes hyphens
+
+        return preg_match($isbnRegex, $isbn);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,10 +37,11 @@
                 <div class="title">
                     <h1 id="add-books">Add Books</h1>
                 </div>
-                <form action="" method="GET" id="add-books-form">
+                <form action="" method="POST" id="add-books-form">
                     <div class="isbn-container">
-                        <label for="isbn" class="label-text">ISBN </label>                        
+                        <label for="isbn" class="label-text">ISBN</label>                        
                         <input type="text" class="add-books-input" name="isbn" placeholder="Enter ISBN Number" autocomplete="off">
+                        <span id="search-error"><?php echo $isbnError; ?></span>
                     </div>
                 </form>
             </div>
