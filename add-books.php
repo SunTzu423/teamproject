@@ -6,9 +6,9 @@
         if(empty($_POST['isbn'])) {
             $isbnError = "Please enter some text.";
         } else if(validateIsbn($_POST['isbn'])) {
-            echo "valid ISBN"; 
+            $isbn = $_POST['isbn'];
         } else {
-            echo "invalid ISBN";
+            $isbnError = "Please enter a valid ISBN number.";
         }
     }
 
@@ -44,6 +44,9 @@
                         <span id="search-error"><?php echo $isbnError; ?></span>
                     </div>
                 </form>
+                <p class="main-text">
+                   Add books to our online library consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
             </div>
         </div>
         <script>

@@ -1,9 +1,28 @@
 <?php
 
-    $search = '';     
-    
-    if(!empty($_GET['search'])) {
-        $search = htmlspecialchars($_GET['search']);
+    $search = '';
+    $searchError = '';
+
+    if($_SERVER['REQUEST_METHOD'] == 'GET') { // search from home page
+
+        if(!empty($_GET['search'])) {
+            $search = htmlspecialchars($_GET['search']);
+        }
+
+    } else if($_SERVER['REQUEST_METHOD'] == 'POST') { //search from this page
+
+        if(empty($_POST['search'])) {
+            $searchError = 'Please enter some text.';            
+        } else {
+            $search = simplifyData($_POST['search']);
+        }        
+    }
+
+    function simplifyData($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
 
 ?>
@@ -26,8 +45,11 @@
                 </p> -->
                 <div id="title-and-search">
                     <div id="search-bar-background"> <!--USE CSS CLAMP()-->
-                        <form class="search" action="" method="GET">
-                            <input type="text" placeholder="Search Books" name="search" autocomplete="off" value="<?php echo $search; ?>"> 
+                        <form class="search" action="" method="POST">
+                            <div id="search-container">
+                                <input type="text" placeholder="Search Books" name="search" autocomplete="off" value="<?php echo $search; ?>">
+                                <span id="search-error"><?php echo $searchError;?></span>
+                            </div>
                             <select id="drop-down" name="drop-down">
                                 <option value="test">Title</option>
                                 <option value="test2">Author</option>
