@@ -1,13 +1,11 @@
 <?php
-    $search = '';
 
-    if(isset($_GET['submit'])) {
-        if(empty($_GET['search'])) {
-            //show error
-        } else {
-            $search = $_GET['search'];
-        }
+    $search = '';     
+    
+    if(!empty($_GET['search'])) {
+        $search = htmlspecialchars($_GET['search']);
     }
+
 ?>
 
 <!DOCTYPE html>
