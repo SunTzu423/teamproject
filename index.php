@@ -1,18 +1,5 @@
 <?php
 
-    $search = "";
-    $searchError = "";
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if(empty($_POST['search'])) {
-            $searchError = "Please enter some text.";       
-        } else {
-            $search = simplifyData($_POST['search']);
-            header("Location: browse.php?search=" . urlencode($search));
-            exit();
-        }
-    }
-
     function simplifyData($data) {
         $data = trim($data);
         $data = stripslashes($data);
@@ -20,6 +7,34 @@
         return $data;
     }
 
+    $search = "";
+    $searchError = "";
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST') { //If search bar submitted
+        if(empty($_POST['search'])) {
+            $searchError = "Please enter some text.";            
+        } else {
+            $search = simplifyData($_POST['search']);
+            header("Location: browse.php?search=" . urlencode($search));
+            exit();
+        }
+    }
+
+    $connection = mysqli_connect("localhost", "root", "password", "libraryProject");
+    if(!$connection) {
+        echo "Connection error: " . mysqli_connect_error();
+    } else {
+        echo "Connected";
+    }
+
+    $sql = 'SELECT * FROM books';
+
+    $result = mysqli_query($connection, $sql);
+
+    $books = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    print_r($books);
+
+    
 ?>
 
 
