@@ -7,6 +7,7 @@
             $isbnError = "Please enter some text.";
         } else if(validateIsbn($_POST['isbn'])) {
             $isbn = $_POST['isbn'];
+            addBook($isbn);
         } else {
             $isbnError = "Please enter a valid ISBN number.";
         }
@@ -19,6 +20,28 @@
 
         return preg_match($isbnRegex, $isbn);
     }
+
+    function addBook($isbn) {
+
+        $url = "https://openlibrary.org/api/books?bibkeys=ISBN:".$isbn."&format=json&jscmd=data";
+
+        $response = file_get_contents($url);
+
+        if ($response) {
+            $data = json_decode($response, true);
+            $bookInfo = $data["ISBN:".$isbn];
+            $title = $bookInfo["title"];
+            $authors = array_map(function ($author) {
+                return $author["name"];
+            }, $bookInfo["authors"]);
+            echo "Title: ".$title."<br>";
+            echo "Author(s): ".implode(", ", $authors)."<br>";
+        } else {
+            echo "book not found\n";
+    }
+    }
+
+    
 ?>
 
 <!DOCTYPE html>

@@ -32,6 +32,9 @@
     $result = mysqli_query($connection, $sql);
 
     $books = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_free_result($result); //free result from memory
+    mysqli_close($connection); //close connection
+
     print_r($books);
 
     
