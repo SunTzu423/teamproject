@@ -26,9 +26,10 @@
         $url = "https://openlibrary.org/api/books?bibkeys=ISBN:".$isbn."&format=json&jscmd=data";
 
         $response = file_get_contents($url);
+        $data = json_decode($response, true);
 
-        if ($response) {
-            $data = json_decode($response, true);
+        if (isset($data["ISBN:".$isbn])) {
+            // $data = json_decode($response, true);
             $bookInfo = $data["ISBN:".$isbn];
             $title = $bookInfo["title"];
             $authors = array_map(function ($author) {
