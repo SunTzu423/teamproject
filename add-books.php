@@ -16,7 +16,7 @@
     function validateIsbn($isbn) {
         // $isbnRegex = '/^(?:(?=.{17}$)978[\d-]{14}|(?=.{13}$)(?:\d[\d-]{12}|\d{9})|\d{10})$/';
         $isbnRegex = '/^(\d{10}|\d{13})$/';
-        $isbnValue = implode(explode('-', $_POST['isbn'])); //removes hyphens
+        $isbn = implode(explode('-', $_POST['isbn'])); //removes hyphens
 
         return preg_match($isbnRegex, $isbn);
     }
@@ -32,16 +32,46 @@
             // $data = json_decode($response, true);
             $bookInfo = $data["ISBN:".$isbn];
             $title = $bookInfo["title"];
-            $authors = array_map(function ($author) {
-                return $author["name"];
-            }, $bookInfo["authors"]);
-            echo "Title: ".$title."<br>";
-            echo "Author(s): ".implode(", ", $authors)."<br>";
+            if(isset($bookInfo["authors"])) {
+                $authors = array_map(function ($author) {
+                    return $author["name"];
+                }, $bookInfo["authors"]);
+                $authorsStr = implode(", ", $authors);
+            } else {
+                $authorsStr = "N/A";
+            }
+            
+            if(isset($bookInfo["cover"])) {
+                $cover = $bookInfo["cover"]["medium"];
+            } else {
+                $cover = null;
+            }
+            
+
+            $connection = mysqli_connect("localhost", "root", "password", "libraryProject");
+            if(!$connection) {
+                echo "Connection error: " . mysqli_connect_error();
+            } else {
+                echo "Connected";
+            }
+
+            $sql = "INSERT INTO books (isbn, title, authors, cover)
+                    VALUES ($isbn, $title, $authorsStr, $cover);";
+            $result = mysqli_query($connection, $sql);
+
+            // $sql = "SELECT * FROM books;";
+            // $result = mysqli_query($connection, $sql);
+            // $books = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+            mysqli_free_result($result); //free result from memory
+            mysqli_close($connection); //close connection
+
+            // print_r($books);
+
         } else {
             echo "book not found\n";
+        }
     }
-    }
-
     
 ?>
 
