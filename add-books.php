@@ -31,7 +31,8 @@
         if (isset($data["ISBN:".$isbn])) {
             // $data = json_decode($response, true);
             $bookInfo = $data["ISBN:".$isbn];
-            $title = $bookInfo["title"];
+            $title = implode(explode('"', $bookInfo["title"])); //removes double quotes for the SQL query
+
             if(isset($bookInfo["authors"])) {
                 $authors = array_map(function ($author) {
                     return $author["name"];
@@ -41,29 +42,23 @@
                 $authorsStr = "N/A";
             }
             
-            if(isset($bookInfo["cover"])) {
-                $cover = $bookInfo["cover"]["medium"];
-            } else {
-                $cover = null;
-            }
-            
+            $cover = (isset($bookInfo["cover"])) ? $bookInfo["cover"]["medium"] : "";
 
-            $connection = mysqli_connect("localhost", "root", "password", "libraryProject");
-            if(!$connection) {
-                echo "Connection error: " . mysqli_connect_error();
-            } else {
-                echo "Connected";
-            }
+            // 0439708184 test isbn
+            include('config/db_connect.php');
 
-            $sql = "INSERT INTO books (isbn, title, authors, cover)
-                    VALUES ($isbn, $title, $authorsStr, $cover);";
-            $result = mysqli_query($connection, $sql);
+            $sql = "INSERT INTO books(isbn, title, authors, cover) VALUES (\"$isbn\", \"$title\", \"$authorsStr\", \"$cover\");";
+            if(mysqli_query($connection, $sql)) {
+                echo "add books successful";
+            } else {
+                echo "add books to db error: " . mysqli_error($connection); 
+            }
 
             // $sql = "SELECT * FROM books;";
             // $result = mysqli_query($connection, $sql);
             // $books = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-            mysqli_free_result($result); //free result from memory
+            //mysqli_free_result($result); //free result from memory
             mysqli_close($connection); //close connection
 
             // print_r($books);
