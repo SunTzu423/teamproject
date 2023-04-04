@@ -28,6 +28,39 @@
     mysqli_free_result($result); //free result from memory
     mysqli_close($connection); //close connection
 
+    function getSearchResults($search) {
+
+        $filteredSearch = implode("+", explode(" ", $search)); //replaces " " with "+"
+        
+        $url = "https://openlibrary.org/search.json?q=".$search;
+
+        $response = file_get_contents($url);
+        $data = json_decode($response, true);
+
+        $isbnArray = $data["docs"][0]["isbn"];
+
+        return $isbnArray;
+    }
+
+    function getBookByIsbn($isbn) {
+
+        $bookData = [];
+
+        $url = "https://openlibrary.org/api/books?bibkeys=ISBN:".$isbn."&format=json&jscmd=data";
+
+        $response = file_get_contents($url);
+        $data = json_decode($response, true);
+
+        if(isset($data["ISBN:".$isbn]) && isset($data["ISBN:".$isbn]["cover"])) {
+            $bookInfo = $data["ISBN:".$isbn];
+
+            $bookData["title"] = $bookInfo["title"];
+            $bookData["cover"] = $bookInfo["cover"]["medium"];
+        }
+
+        return $bookData;
+    }
+
     function simplifyData($data) {
         $data = trim($data);
         $data = stripslashes($data);
@@ -73,7 +106,7 @@
                     </div>
                 </div>
                 <div id="home-trending-background">
-                    <?php if($_SERVER['REQUEST_METHOD'] == 'GET'): ?> <!-- if visiting page from Home page or from navbar-->
+                    <?php if($_SERVER['REQUEST_METHOD'] == 'GET' || $search == ''): ?> <!-- if visiting page from Home page or from navbar-->
                         <?php if(empty($_GET['search'])): ?> <!-- if visiting page from navbar-->
                             <?php foreach($books as $book): ?>
                                 <div class="home-trending-book">
@@ -83,6 +116,17 @@
                             <?php endforeach; ?>
                         <?php else: ?> <!-- if visiting page from Home page -->
                         <?php endif; ?> 
+                    <?php else: ?> <!-- if visiting page from Browse (search) -->
+                        <?php $isbnResults = getSearchResults($search); ?>
+                        <?php foreach($isbnResults as $isbn): ?>
+                            <?php $book = getBookByIsbn($isbn); ?>
+                            <?php if($book != []): ?> <!-- if the book can be found (AND has cover)-->
+                                <div class="home-trending-book">
+                                    <img src="<?php echo $book["cover"]; ?>">
+                                    <h1 id="book-title"><?php echo $book["title"]; ?></h1>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
             </div>                 
