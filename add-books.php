@@ -52,7 +52,7 @@
             if($cover != "" && mysqli_query($connection, $sql)) {
                 $isbnMessage = "Successfully added book!";
             } else {
-                $isbnMessage = "Couldn't find the book you're looking for";
+                $isbnMessage = "Couldn't find the book you're looking for.";
             }
 
             // $sql = "SELECT * FROM books;";
@@ -65,7 +65,7 @@
             // print_r($books);
 
         } else {
-            echo "book not found\n";
+            $isbnMessage = "Couldn't find the book you're looking for.";
         }
     }
     

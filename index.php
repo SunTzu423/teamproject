@@ -30,7 +30,7 @@
     mysqli_free_result($result); //free result from memory
     mysqli_close($connection); //close connection
 
-    print_r($books);
+    // print_r($books);
     
 ?>
 
@@ -78,8 +78,8 @@
                 <div id="home-trending-background">
                     <?php foreach($books as $book): ?>
                         <div class="home-trending-book">
-                            
                             <img src="<?php echo $book["cover"]; ?>">
+                            <h1 id="book-title"><?php echo $book["title"]; ?></h1>
                         </div>
                     <?php endforeach; ?>
                 </div>
