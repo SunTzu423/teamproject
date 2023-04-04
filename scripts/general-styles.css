@@ -4,6 +4,20 @@ body {
     min-height: 1000px; 
 }
 
+#add-books { 
+    width: fit-content;
+    font-family: "Arial", sans-serif;
+    font-weight: 500;
+    font-size: 35px;
+    margin: 40px auto 10px auto;
+    line-height: 2;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+}
+
 #main-flex-container {
     display: flex;
     flex-direction: column;

@@ -77,17 +77,15 @@
         <div id="navbar"></div>
         <div id="main-flex-container">
             <div class="main-text-background">
-                <?php if($_SERVER['REQUEST_METHOD'] == 'GET' && empty($_GET['search'])): ?>
                 <div class="title">
-                    <h1 id="add-books">Browse</h1>
+                    <h1 id="add-books">My Books</h1>
                 </div>
                 <p class="main-text">
-                    Browse a large collection of books based on keywords or title. 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </p>
-                <?php endif; ?>
                 <div id="title-and-search">
                     <div id="search-bar-background"> <!--USE CSS CLAMP()-->
-                        <form class="search" action="" method="POST">
+                        <!-- <form class="search" action="" method="POST">
                             <div id="search-container">
                                 <input type="text" placeholder="Search Books" name="search" autocomplete="off" value="<?php echo $search; ?>">
                                 <span id="search-error"><?php echo $searchError;?></span>
@@ -96,12 +94,12 @@
                                 <option value="test">Title</option>
                                 <option value="test2">Author</option>
                                 <option value="test3">Thing</option>
-                            </select> -->
+                            </select> 
                             <button type="submit" id="search-button" name="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 Search 
                             </button>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
                 <div id="home-trending-background">

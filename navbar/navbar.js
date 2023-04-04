@@ -6,7 +6,7 @@ let selectBarWidth = "--select-bar-factor";
 let idPagePair = 
 {
     "nav-1": "index.php",
-    "nav-2": "page2.html",
+    "nav-2": "my-books.php",
     "nav-3": "browse.php",
     "nav-4": "add-books.php",
     "nav-5": "page-5.html"
