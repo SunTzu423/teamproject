@@ -31,7 +31,6 @@
     mysqli_close($connection); //close connection
 
     print_r($books);
-
     
 ?>
 
@@ -76,10 +75,17 @@
                     </ul>
                 </p>
                 <br>
-                <div id="trending-background"></div>
+                <div id="home-trending-background">
+                    <?php foreach($books as $book): ?>
+                        <div class="home-trending-book">
+                            
+                            <img src="<?php echo $book["cover"]; ?>">
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
-        <!-- <div id="bottom-test"></div> -->
+        <div id="bottom-test"></div>
         <script>
             $(document).ready(function(){
                  $("#navbar").load("navbar/navbar.html");

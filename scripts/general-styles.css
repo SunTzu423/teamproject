@@ -67,6 +67,30 @@ body {
     border-radius: 7px;
 }
 
+#home-trending-background {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    width: 95%;
+    margin: 30px auto;
+    background-color: #f1f1f1;
+    border-radius: 7px;
+    flex-wrap: wrap;
+}
+
+.home-trending-book {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+/* .home-trending-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+} */
+
 /* SEARCH BAR */
 #title-and-search { /*flex container to make the title and search bar on the same line*/
     display: flex;

@@ -1,15 +1,15 @@
 <?php
     $isbn = '';
-    $isbnError = '';    
+    $isbnMessage = '';    
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(empty($_POST['isbn'])) {
-            $isbnError = "Please enter some text.";
+            $isbnMessage = "Please enter some text.";
         } else if(validateIsbn($_POST['isbn'])) {
             $isbn = $_POST['isbn'];
             addBook($isbn);
         } else {
-            $isbnError = "Please enter a valid ISBN number.";
+            $isbnMessage = "Please enter a valid ISBN number.";
         }
     }
 
@@ -22,6 +22,7 @@
     }
 
     function addBook($isbn) {
+        global $isbnMessage;
 
         $url = "https://openlibrary.org/api/books?bibkeys=ISBN:".$isbn."&format=json&jscmd=data";
 
@@ -48,10 +49,10 @@
             include('config/db_connect.php');
 
             $sql = "INSERT INTO books(isbn, title, authors, cover) VALUES (\"$isbn\", \"$title\", \"$authorsStr\", \"$cover\");";
-            if(mysqli_query($connection, $sql)) {
-                echo "add books successful";
+            if($cover != "" && mysqli_query($connection, $sql)) {
+                $isbnMessage = "Successfully added book!";
             } else {
-                echo "add books to db error: " . mysqli_error($connection); 
+                $isbnMessage = "Couldn't find the book you're looking for";
             }
 
             // $sql = "SELECT * FROM books;";
@@ -90,7 +91,7 @@
                     <div class="isbn-container">
                         <label for="isbn" class="label-text">ISBN</label>                        
                         <input type="text" class="add-books-input" name="isbn" placeholder="Enter ISBN Number" autocomplete="off">
-                        <span id="search-error"><?php echo $isbnError; ?></span>
+                        <span id="search-error"><?php echo $isbnMessage; ?></span>
                     </div>
                 </form>
                 <p class="main-text">
