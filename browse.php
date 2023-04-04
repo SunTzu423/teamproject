@@ -31,6 +31,8 @@
     function getSearchResults($search) {
 
         $filteredSearch = implode("+", explode(" ", $search)); //replaces " " with "+"
+        $filteredSearch = implode("", explode("'", $search));
+        $filteredSearch = implode("", explode('"', $search));
         
         $url = "https://openlibrary.org/search.json?q=".$search;
 
