@@ -18,6 +18,16 @@
         }        
     }
 
+    include('config/db_connect.php');
+
+    $sql = 'SELECT * FROM books';
+
+    $result = mysqli_query($connection, $sql);
+
+    $books = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_free_result($result); //free result from memory
+    mysqli_close($connection); //close connection
+
     function simplifyData($data) {
         $data = trim($data);
         $data = stripslashes($data);
@@ -62,9 +72,19 @@
                         </form>
                     </div>
                 </div>
-                <div id="trending-background"></div>
-                <div id="trending-background"></div>
-                <div id="trending-background"></div>
+                <div id="home-trending-background">
+                    <?php if($_SERVER['REQUEST_METHOD'] == 'GET'): ?> <!-- if visiting page from Home page or from navbar-->
+                        <?php if(empty($_GET['search'])): ?> <!-- if visiting page from navbar-->
+                            <?php foreach($books as $book): ?>
+                                <div class="home-trending-book">
+                                    <img src="<?php echo $book["cover"]; ?>">
+                                    <h1 id="book-title"><?php echo $book["title"]; ?></h1>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?> <!-- if visiting page from Home page -->
+                        <?php endif; ?> 
+                    <?php endif; ?>
+                </div>
             </div>                 
         </div>
         <script>

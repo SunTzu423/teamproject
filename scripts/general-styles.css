@@ -74,6 +74,7 @@ body {
     height: fit-content;
     width: 95%;
     margin: 30px auto;
+    /* background-color: rgb(249, 249, 249); */
     background-color: #f1f1f1;
     border-radius: 7px;
     flex-wrap: wrap;
@@ -89,7 +90,9 @@ body {
     /* max-width: 10%; */
     width: 175px;
     background-color: rgb(249, 249, 249);
+    /* background-color: #f1f1f1; */
     border-radius: 7px;
+    margin: 5px;
 }
 
 #book-title { 
