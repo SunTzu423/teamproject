@@ -78,12 +78,12 @@
         <div id="main-flex-container">
             <div class="main-text-background">
                 <?php if($_SERVER['REQUEST_METHOD'] == 'GET' && empty($_GET['search'])): ?>
-                <div class="title">
-                    <h1 id="add-books">Browse</h1>
-                </div>
-                <p class="main-text">
-                    Browse a large collection of books based on keywords or title. 
-                </p>
+                    <div class="title">
+                        <h1 id="add-books">Browse</h1>
+                    </div>
+                    <p class="main-text">
+                        Browse a large collection of books based on keywords or title. 
+                    </p>
                 <?php endif; ?>
                 <div id="title-and-search">
                     <div id="search-bar-background"> <!--USE CSS CLAMP()-->
@@ -107,29 +107,38 @@
                 <div id="home-trending-background">
                     <?php if($_SERVER['REQUEST_METHOD'] == 'GET' || $search == ''): ?> <!-- if visiting page from Home page or from navbar -->
                         <?php if(empty($_GET['search'])): ?> <!-- if visiting page from navbar -->
-                            <?php foreach($books as $book): ?>
+                            <!-- <?php foreach($books as $book): ?>
                                 <div class="home-trending-book">
                                     <img src="<?php echo $book["cover"]; ?>">
                                     <h1 id="book-title"><?php echo $book["title"]; ?></h1>
                                 </div>
-                            <?php endforeach; ?>
+                            <?php endforeach; ?> -->
+                            <div id="no-results">No Search Results</div>
                         <?php else: ?> <!-- if visiting page from Home page (search) -->
                             <?php $bookResults = getSearchResults($search); ?>
+                            <?php if($bookResults != []): ?>
+                                <?php foreach($bookResults as $book): ?>
+                                    <div class="home-trending-book">
+                                        <img src="<?php echo $book["cover"]; ?>">
+                                        <h1 id="book-title"><?php echo $book["title"]; ?></h1>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <div id="no-results">No Search Results</div>
+                            <?php endif; ?>
+                        <?php endif; ?> 
+                    <?php else: ?> <!-- if visiting page from Browse (search) -->
+                        <?php $bookResults = getSearchResults($search); ?>
+                        <?php if($bookResults != []): ?>
                             <?php foreach($bookResults as $book): ?>
                                 <div class="home-trending-book">
                                     <img src="<?php echo $book["cover"]; ?>">
                                     <h1 id="book-title"><?php echo $book["title"]; ?></h1>
                                 </div>
                             <?php endforeach; ?>
-                        <?php endif; ?> 
-                    <?php else: ?> <!-- if visiting page from Browse (search) -->
-                        <?php $bookResults = getSearchResults($search); ?>
-                        <?php foreach($bookResults as $book): ?>
-                            <div class="home-trending-book">
-                                <img src="<?php echo $book["cover"]; ?>">
-                                <h1 id="book-title"><?php echo $book["title"]; ?></h1>
-                            </div>
-                        <?php endforeach; ?>
+                        <?php else: ?>
+                            <div id="no-results">No Search Results</div>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
             </div>                 
