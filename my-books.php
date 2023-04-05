@@ -1,5 +1,17 @@
 <?php
 
+    $isbnMessage = '';
+    $isbn = '';
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(!empty($_POST['isbn']) && validateIsbn($_POST['isbn'])) {
+            $isbn = $_POST['isbn'];
+            addBook($isbn);
+        } else {
+            $isbnMessage = "Could not save the book.";
+        }
+    }
+
     include('config/db_connect.php');
 
     $sql = 'SELECT * FROM books';
@@ -10,11 +22,61 @@
     mysqli_free_result($result); //free result from memory
     mysqli_close($connection); //close connection
 
+    function addBook($isbn) {
+        global $isbnMessage;
+
+        $url = "https://openlibrary.org/api/books?bibkeys=ISBN:".$isbn."&format=json&jscmd=data";
+
+        $response = file_get_contents($url);
+        $data = json_decode($response, true);
+
+        if (isset($data["ISBN:".$isbn])) {
+            $bookInfo = $data["ISBN:".$isbn];
+            $title = implode(explode('"', $bookInfo["title"])); //removes double quotes for the SQL query
+
+            if(isset($bookInfo["authors"])) {
+                $authors = array_map(function ($author) {
+                    return $author["name"];
+                }, $bookInfo["authors"]);
+                $authorsStr = implode(", ", $authors);
+            } else {
+                $authorsStr = "N/A";
+            }
+            
+            $cover = (isset($bookInfo["cover"])) ? $bookInfo["cover"]["medium"] : "";
+
+            // 0439708184 test isbn
+            include('config/db_connect.php');
+
+            $sql = "INSERT INTO books(isbn, title, authors, cover) VALUES (\"$isbn\", \"$title\", \"$authorsStr\", \"$cover\");";
+            if($cover != "" && mysqli_query($connection, $sql)) {
+                $isbnMessage = "Successfully saved book!";
+            } else {
+                $isbnMessage = "Could not save the book.";
+            }
+
+            //mysqli_free_result($result); //free result from memory
+            mysqli_close($connection); //close connection
+
+            // print_r($books);
+
+        } else {
+            $isbnMessage = "Could not save the book.";
+        }
+    }
+
     function simplifyData($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
+    }
+
+    function validateIsbn($isbn) {
+        $isbnRegex = '/^(\d{10}|\d{13})$/';
+        $isbn = implode(explode('-', $_POST['isbn'])); //removes hyphens
+
+        return preg_match($isbnRegex, $isbn);
     }
 
 ?>
@@ -38,8 +100,8 @@
                 <p class="main-text">
                     Your personal collection of books. To save books to your collection go to our <a href="add-books.php">Save Books</a> page and enter an ISBN number, or save the books from a <a href="browse.php">Browse</a> search by title.
                 </p>
-                <div id="title-and-search">
-                </div>
+                <div id="title-and-search"></div>
+                <div class="main-text" id="search-error"><?php echo $isbnMessage; ?></div>
                 <div id="home-trending-background">
                     <?php if($books != []): ?>
                         <?php foreach($books as $book): ?>

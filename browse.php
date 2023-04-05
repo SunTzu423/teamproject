@@ -46,6 +46,7 @@
                     $book = [
                         "title" => isset($doc["title"]) ? $doc["title"] : "",
                         "cover" => "https://covers.openlibrary.org/b/id/{$doc["cover_i"]}-M.jpg",
+                        "isbn" => isset($doc["isbn"]) ? $doc["isbn"][0] : "",
                     ];
 
                     array_push($results, $book);
@@ -119,8 +120,19 @@
                             <?php if($bookResults != []): ?>
                                 <?php foreach($bookResults as $book): ?>
                                     <div class="home-trending-book">
-                                        <img src="<?php echo $book["cover"]; ?>">
+                                        <form>
+                                            <input type="hidden" name="isbn" value="<?php echo $book["isbn"]; ?>">
+                                            <input type="hidden" name="title" value="<?php echo $book["title"]; ?>">
+                                            <button name="image" action="book-details.php" type="submit">
+                                                <img src="<?php echo $book["cover"]; ?>">
+                                            </button>
+                                        </form>
+                                        <!-- <img src="<?php echo $book["cover"]; ?>"> -->
                                         <h1 id="book-title"><?php echo $book["title"]; ?></h1>
+                                        <form action="my-books.php" method="POST" id="save-book">
+                                            <input type="hidden" name="isbn" value="<?php echo $book["isbn"]; ?>">
+                                            <button type="submit" id="save-button" name="submit">Save</button>
+                                        </form>
                                     </div>
                                 <?php endforeach; ?>
                             <?php else: ?>
@@ -134,7 +146,8 @@
                                 <div class="home-trending-book">
                                     <img src="<?php echo $book["cover"]; ?>">
                                     <h1 id="book-title"><?php echo $book["title"]; ?></h1>
-                                    <form method="POST" id="save-book">
+                                    <form action="my-books.php" method="POST" id="save-book">
+                                        <input type="hidden" name="isbn" value="<?php echo $book["isbn"]; ?>">
                                         <button type="submit" id="save-button" name="submit">Save</button>
                                     </form>
                                 </div>
