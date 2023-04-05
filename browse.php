@@ -134,6 +134,9 @@
                                 <div class="home-trending-book">
                                     <img src="<?php echo $book["cover"]; ?>">
                                     <h1 id="book-title"><?php echo $book["title"]; ?></h1>
+                                    <form method="POST" id="save-book">
+                                        <button type="submit" id="save-button" name="submit">Save</button>
+                                    </form>
                                 </div>
                             <?php endforeach; ?>
                         <?php else: ?>

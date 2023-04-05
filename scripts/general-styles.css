@@ -193,3 +193,25 @@ body {
     margin: 30px auto;
     line-height: 1.8;
 }
+
+#save-button {
+    flex-direction:row;
+    width: 6em;
+    height: auto;
+    float: right;
+    border: none;
+    background-color: #345738;
+    border-radius: 5px;
+    color: #e4e4e4;
+    font-size: 25px;
+    padding: 10px;
+}
+
+#save-button:hover { /*when you hover over search button*/
+    background-color: #34713d;
+}
+
+#save-book {
+    display: flex;
+    justify-content:center;
+}
