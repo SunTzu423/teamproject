@@ -45,14 +45,36 @@
             
             $cover = (isset($bookInfo["cover"])) ? $bookInfo["cover"]["medium"] : "";
 
-            // 0439708184 test isbn
+            $hasBook = false;
+
             include('config/db_connect.php');
 
-            $sql = "INSERT INTO books(isbn, title, authors, cover) VALUES (\"$isbn\", \"$title\", \"$authorsStr\", \"$cover\");";
-            if($cover != "" && mysqli_query($connection, $sql)) {
-                $isbnMessage = "Successfully saved book!";
+            $sql = 'SELECT * FROM books';
+
+            $result = mysqli_query($connection, $sql);
+
+            $books = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            mysqli_free_result($result); //free result from memory
+            mysqli_close($connection); //close connection
+
+            foreach($books as $book) {
+                if($book["isbn"] == $isbn) {
+                    $hasBook = true;
+                    break;
+                }
+            }
+
+            // 0439708184 test isbn
+            include('config/db_connect.php');
+            if(!$hasBook) {
+                $sql = "INSERT INTO books(isbn, title, authors, cover) VALUES (\"$isbn\", \"$title\", \"$authorsStr\", \"$cover\");";
+                if($cover != "" && mysqli_query($connection, $sql)) {
+                    $isbnMessage = "Successfully saved book!";
+                } else {
+                    $isbnMessage = "Could not save the book.";
+                }
             } else {
-                $isbnMessage = "Could not save the book.";
+                $isbnMessage = "Book already saved.";
             }
 
             //mysqli_free_result($result); //free result from memory
@@ -108,8 +130,6 @@
                             <div class="home-trending-book">
                                 <form action="book-details.php" method="POST">
                                         <input type="hidden" name="isbn" value="<?php echo $book["isbn"]; ?>">
-                                        <input type="hidden" name="title" value="<?php echo $book["title"]; ?>">
-                                        <input type="hidden" name="cover" value="<?php echo $book["cover"]; ?>">
                                         <button name="image" type="submit" id="cover-images">
                                             <img src="<?php echo $book["cover"]; ?>">
                                         </button>

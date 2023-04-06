@@ -44,15 +44,38 @@
             }
             
             $cover = (isset($bookInfo["cover"])) ? $bookInfo["cover"]["medium"] : "";
+            
+            $hasBook = false;
+
+            include('config/db_connect.php');
+
+            $sql = 'SELECT * FROM books';
+
+            $result = mysqli_query($connection, $sql);
+
+            $books = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            mysqli_free_result($result); //free result from memory
+            mysqli_close($connection); //close connection
+
+            foreach($books as $book) {
+                if($book["isbn"] == $isbn) {
+                    $hasBook = true;
+                    break;
+                }
+            }
+
 
             // 0439708184 test isbn
             include('config/db_connect.php');
-
-            $sql = "INSERT INTO books(isbn, title, authors, cover) VALUES (\"$isbn\", \"$title\", \"$authorsStr\", \"$cover\");";
-            if($cover != "" && mysqli_query($connection, $sql)) {
-                $isbnMessage = "Successfully added book!";
+            if(!$hasBook) {
+                $sql = "INSERT INTO books(isbn, title, authors, cover) VALUES (\"$isbn\", \"$title\", \"$authorsStr\", \"$cover\");";
+                if($cover != "" && mysqli_query($connection, $sql)) {
+                    $isbnMessage = "Successfully added book!";
+                } else {
+                    $isbnMessage = "Couldn't find the book you're looking for.";
+                }
             } else {
-                $isbnMessage = "Couldn't find the book you're looking for.";
+                $isbnMessage = "Book already saved.";
             }
 
             // $sql = "SELECT * FROM books;";

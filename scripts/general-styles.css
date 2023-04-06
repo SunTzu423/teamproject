@@ -239,9 +239,18 @@ body {
 #book-title-details {
     width: 95%;
     font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 50px;
+    margin: 50px auto 30px auto;
+    line-height: 1.2;
+}
+
+#book-data-details {
+    width: 95%;
+    font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 35px;
-    margin: 50px auto 30px auto;
+    margin: 10px auto 30px auto;
     line-height: 1.2;
 }
 
@@ -249,5 +258,64 @@ body {
     text-align: center;
     width: 100%;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
+    
+}
 
+#cover-image-details {
+    margin: 30px;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    border-radius: 7px;
+}
+
+#image-background {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    width: fit-content;
+    margin: 30px;
+    /* background-color: rgb(249, 249, 249); */
+    background-color: #f1f1f1;
+    border-radius: 7px;
+    flex-wrap: wrap;
+    padding: 10px;
+    justify-content: center;
+}
+
+#save-button-details {
+    width: 9em;
+    height: auto;
+    border: none;
+    background-color: #345738;
+    border-radius: 5px;
+    color: #e4e4e4;
+    font-size: 30px;
+    padding: 15px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+#save-button-details:hover {
+    background-color: #34713d;
+}
+
+#delete-button-details {
+    width: 9em;
+    height: auto;
+    border: none;
+    background-color: #707070;
+    border-radius: 5px;
+    color: #e4e4e4;
+    font-size: 30px;
+    padding: 15px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+#delete-button-details:hover {
+    background-color: #a0a0a0;
 }
