@@ -106,7 +106,14 @@
                     <?php if($books != []): ?>
                         <?php foreach($books as $book): ?>
                             <div class="home-trending-book">
-                                <img src="<?php echo $book["cover"]; ?>">
+                                <form action="book-details.php" method="POST">
+                                        <input type="hidden" name="isbn" value="<?php echo $book["isbn"]; ?>">
+                                        <input type="hidden" name="title" value="<?php echo $book["title"]; ?>">
+                                        <input type="hidden" name="cover" value="<?php echo $book["cover"]; ?>">
+                                        <button name="image" type="submit" id="cover-images">
+                                            <img src="<?php echo $book["cover"]; ?>">
+                                        </button>
+                                    </form>
                                 <h1 id="book-title"><?php echo $book["title"]; ?></h1>
                             </div>
                         <?php endforeach; ?>

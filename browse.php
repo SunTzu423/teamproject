@@ -108,26 +108,20 @@
                 <div id="home-trending-background">
                     <?php if($_SERVER['REQUEST_METHOD'] == 'GET' || $search == ''): ?> <!-- if visiting page from Home page or from navbar -->
                         <?php if(empty($_GET['search'])): ?> <!-- if visiting page from navbar -->
-                            <!-- <?php foreach($books as $book): ?>
-                                <div class="home-trending-book">
-                                    <img src="<?php echo $book["cover"]; ?>">
-                                    <h1 id="book-title"><?php echo $book["title"]; ?></h1>
-                                </div>
-                            <?php endforeach; ?> -->
                             <div id="no-results">No Search Results</div>
                         <?php else: ?> <!-- if visiting page from Home page (search) -->
                             <?php $bookResults = getSearchResults($search); ?>
                             <?php if($bookResults != []): ?>
                                 <?php foreach($bookResults as $book): ?>
                                     <div class="home-trending-book">
-                                        <form>
+                                        <form action="book-details.php" method="POST">
                                             <input type="hidden" name="isbn" value="<?php echo $book["isbn"]; ?>">
                                             <input type="hidden" name="title" value="<?php echo $book["title"]; ?>">
-                                            <button name="image" action="book-details.php" type="submit">
+                                            <input type="hidden" name="cover" value="<?php echo $book["cover"]; ?>">
+                                            <button name="image" type="submit" id="cover-images">
                                                 <img src="<?php echo $book["cover"]; ?>">
                                             </button>
                                         </form>
-                                        <!-- <img src="<?php echo $book["cover"]; ?>"> -->
                                         <h1 id="book-title"><?php echo $book["title"]; ?></h1>
                                         <form action="my-books.php" method="POST" id="save-book">
                                             <input type="hidden" name="isbn" value="<?php echo $book["isbn"]; ?>">
@@ -144,7 +138,14 @@
                         <?php if($bookResults != []): ?>
                             <?php foreach($bookResults as $book): ?>
                                 <div class="home-trending-book">
-                                    <img src="<?php echo $book["cover"]; ?>">
+                                    <form action="book-details.php" method="POST">
+                                        <input type="hidden" name="isbn" value="<?php echo $book["isbn"]; ?>">
+                                        <input type="hidden" name="title" value="<?php echo $book["title"]; ?>">
+                                        <input type="hidden" name="cover" value="<?php echo $book["cover"]; ?>">
+                                        <button name="image" type="submit" id="cover-images">
+                                            <img src="<?php echo $book["cover"]; ?>">
+                                        </button>
+                                    </form>
                                     <h1 id="book-title"><?php echo $book["title"]; ?></h1>
                                     <form action="my-books.php" method="POST" id="save-book">
                                         <input type="hidden" name="isbn" value="<?php echo $book["isbn"]; ?>">

@@ -1,6 +1,17 @@
 <?php
 
+    $title = '';
+    $isbn = '';
+    $cover = '';
 
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(!empty($_POST['title']) && !empty($_POST['isbn']) && !empty($_POST['cover'])) {
+            $title = $_POST['title'];
+            $isbn = $_POST['isbn'];
+            $cover = $_POST['cover'];
+        }
+
+    }
 
 ?>
 
@@ -17,9 +28,13 @@
         <div id="navbar"></div>
         <div id="main-flex-container">
             <div class="main-text-background">
-                <div class="title">
-                    <h1 id="add-books">My Books</h1>
+                <div id="title-and-image">
+                    <img src="<?php echo $cover; ?>">
+                    <div id="book-title-details-container">
+                        <h1 id="book-title-details"><?php echo $title; ?></h1>
+                    </div>
                 </div>
+                
             </div>                 
         </div>
         <script>
