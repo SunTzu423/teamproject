@@ -38,7 +38,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Temporary Title</title>
+        <title>VerbVault</title>
         <link rel="stylesheet" type="text/css" href="scripts/general-styles.css"/>
         <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
         <script src="https://kit.fontawesome.com/7a99b4a29c.js" crossorigin="anonymous"></script> <!-- adds easy icons like the magnifying glass in the search button -->
@@ -48,7 +48,7 @@
         <div id="main-flex-container">
             <div class="main-text-background">
                 <div id="title-and-search">
-                    <h1 id="welcome">Welcome to Website Name</h1>
+                    <h1 id="welcome">Welcome to VerbVault!</h1>
                     <div id="search-bar-background"> <!--USE CSS CLAMP()-->
                         <form class="search" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                             <div id="search-container">
