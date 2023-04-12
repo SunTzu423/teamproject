@@ -9,7 +9,6 @@ let idPagePair =
     "nav-2": "my-books.php",
     "nav-3": "browse.php",
     "nav-4": "add-books.php",
-    "nav-5": "page-5.html"
 };
 
 function RedirectWindow(elemId) {
