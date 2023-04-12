@@ -97,7 +97,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Temporary Title</title>
+        <title>VerbVault</title>
         <link rel="stylesheet" type="text/css" href="scripts/general-styles.css"/>
         <link rel="stylesheet" type="text/css" href="scripts/add-books-styles.css"/>
         <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
