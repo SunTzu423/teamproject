@@ -319,3 +319,11 @@ body {
 #delete-button-details:hover {
     background-color: #a0a0a0;
 }
+
+@media (max-width: 1200px) 
+{
+    #search-bar-background
+    {
+        display: none;
+    }
+}
